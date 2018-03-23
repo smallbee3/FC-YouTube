@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +10,13 @@
     <title>Document</title>
 </head>
 <body>
+
+    {% for post in posts  %}
+        <div>[{{ post.author }}] {{ post.title }} by {{ post.author }}</div>
+        <div>{{ post.content }}</div>
+        <div>{{ post.youtube_link }}</div>
+        <div><img src="{{ post.img_thumbnail.url }}" alt=""></div>
+    {% endfor %}
 
 </body>
 </html>

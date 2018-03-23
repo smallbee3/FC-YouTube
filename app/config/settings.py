@@ -16,15 +16,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
 
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
-
-MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
-MEDIA_URL = '/media/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
@@ -151,10 +152,14 @@ secrets_base = json.loads(base_text)
 # print(secrets_base)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets_base['SECRET_KEY']
+SUPERUSER_USERNAME = secrets_base['SUPERUSER_USERNAME']
+SUPERUSER_PASSWORD = secrets_base['SUPERUSER_PASSWORD']
+SUPERUSER_EMAIL = secrets_base['SUPERUSER_EMAIL']
 # YOUTUBE_API_KEY = secrets_base['YOUTUBE_API_KEY']
 # FACEBOOK_APP_ID = secrets_base['FACEBOOK_APP_ID']
 # FACEBOOK_SECRET_CODE = secrets_base['FACEBOOK_SECRET_CODE']
 # EMAIL_HOST_PASSWORD = secrets_base['EMAIL_HOST_PASSWORD']
 # SMS_API_KEY = secrets_base['SMS_API_KEY']
 # SMS_API_SECRET = secrets_base['SMS_API_SECRET']
+
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
