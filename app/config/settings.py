@@ -26,13 +26,10 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
 
 # AUTH_USER_MODEL = 'members.User'
-
-
-
-
-
 
 
 
@@ -51,6 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Thirdparty apps
+    'django_extensions',
+
+    # Custom apps
+    'members',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +72,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATES_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
