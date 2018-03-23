@@ -1,0 +1,22 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+
+    <div>[{{ post.category }}] {{ post.title }} by {{ post.author }}</div>
+    <div>{{ post.content }}</div>
+    <div><a href="{{ post.youtube_link }}" target="_blank">{{ post.youtube_link }}</a></div>
+    <div><img src="{% if post.img_thumbnail %}{{ post.img_thumbnail.url }}{% endif %}" alt=""></div>
+
+    {% for comment in comments  %}
+        <div>
+            {{ comment.author }} {{ comment.content }}
+        </div>
+    {% endfor %}
+
+    <form action="{% url 'post:comment-create' pk=post.pk %}" method="POST" class="comment-form">
+        {% csrf_token %}
+        {{ comment_form.content }}
+    </form>
+
+
+{% endblock %}
