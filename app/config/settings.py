@@ -29,7 +29,7 @@ STATICFILES_DIRS = [
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
-# AUTH_USER_MODEL = 'members.User'
+AUTH_USER_MODEL = 'members.User'
 
 
 
