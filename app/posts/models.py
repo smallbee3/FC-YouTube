@@ -28,7 +28,7 @@ class Post(models.Model):
         return f'Post (PK: {self.pk}, Author: {self.author.username})'
 
     class Meta:
-        ordering = ['-pk']
+        ordering = ['-recorded_date']
 
 
 class Comment(models.Model):

@@ -12,10 +12,11 @@
 <body>
 
     {% for post in posts  %}
-        <div>[{{ post.author }}] {{ post.title }} by {{ post.author }}</div>
+        <div>[{{ post.category }}] {{ post.title }} by {{ post.author }}</div>
         <div>{{ post.content }}</div>
-        <div>{{ post.youtube_link }}</div>
-        <div><img src="{{ post.img_thumbnail.url }}" alt=""></div>
+        <div><a href="{{ post.youtube_link }}" target="_blank">{{ post.youtube_link }}</a></div>
+        <div><img src="{% if post.img_thumbnail %}{{ post.img_thumbnail.url }}{% endif %}" alt=""></div>
+        <br>
     {% endfor %}
 
 </body>
