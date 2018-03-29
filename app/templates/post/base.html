@@ -1,19 +1,66 @@
 {% load static %}
-
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Melon archive</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
+
 <body>
+    {#{% if request.user.is_authenticated %}#}
+    {#    <div>{{ request.user }}로 로그인 중입니다.</div>#}
+    {#{% else %}#}
+    {#    <div><a href="{% url 'login' %}">로그인하세요</a></div>#}
+    {#{% endif %}#}
 
-{%  block content %}
+	<div class="header-wrap">
+		<header class="main-header clearfix">
+			<div class="search-container search-box">
+				<a href="{% url 'post:post-list' %}">
+					<img src="{% static 'images/logo.png' %}" alt="">
+				</a>
+				<div class="input-container">
+                    <form action="{% url 'post:post-search' %}">
+                        <input name="keyword" type="text" class="search-input">
+                    </form>
+				</div>
+			</div>
+			<nav class="main-header-nav clearfix">
+				<ul class="clearfix">
+{#					<li><a href="{% url 'artist:artist-list' %}">아티스트</a></li>#}
+{#					<li><a href="{% url 'album:album-list' %}">앨범</a></li>#}
+{#					<li><a href="{% url 'song:song-list' %}">곡</a></li>#}
+{#                  {% if user.is_authenticated %}#}
+{#                    <li><a href="{% url 'emails:send-email' %}">EMAIL</a></li>#}
+{#                    <li><a href="{% url 'sms:sms-send' %}">SMS</a></li>#}
+{#					{% endif %}#}
+				</ul>
+			</nav>
+{#			<nav class="main-header-nav nav-right clearfix">#}
+{#				<ul class="clearfix">#}
+{#					{% if user.is_authenticated %}#}
+{#					<li><a href="">내 정보 ({{ request.user.username }})</a></li>#}
+{#					<li><a href="{% url 'logout' %}">로그아웃</a></li>#}
+{#					{% else %}#}
+{#					<li><a href="{% url 'login' %}">로그인</a></li>#}
+{#					<li><a href="{% url 'signup' %}">회원가입</a></li>#}
+{#					{% endif %}#}
+{#				</ul>#}
+{#			</nav>#}
+		</header>
+	</div>
 
-{%  endblock %}
-
+	<div class="content-block">
+		{% block content %}
+		{% endblock %}
+	</div>
 </body>
 </html>

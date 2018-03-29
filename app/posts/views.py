@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -16,11 +17,9 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    comments = Comment.objects.all()
     comment_form = CommentForm()
     data = {
         'post': post,
-        'comments': comments,
         'comment_form': comment_form,
     }
     return render(request, 'post/post_detail.html', data)
@@ -58,3 +57,32 @@ def comment_create(request, pk):
             messages.error(request, error_msg)
 
         return redirect('post:post-detail', pk=pk)
+
+
+def post_search(request):
+    keyword = request.GET.get('keyword')
+
+    print('')
+    print(keyword)
+    print('')
+
+
+    context = {
+        'songs': [],
+    }
+    if keyword:
+        songs_from_artists = Post.objects.filter(
+            script__contains=keyword
+        )
+        posts = Post.objects.filter(
+            Q(script__contains=keyword) |
+            Q(content__contains=keyword) |
+            Q(title__contains=keyword) |
+            Q(comment__content__contains=keyword)
+        ).distinct()
+        context = {
+            'posts': posts,
+        }
+    return render(request, 'post/post_search.html', context)
+
+

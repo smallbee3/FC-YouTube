@@ -18,7 +18,7 @@ class Post(models.Model):
     )
 
     category = models.CharField(max_length=100)
-    youtube_link = models.CharField(max_length=1000)
+    youtube_id = models.CharField(max_length=1000)
     script = models.TextField(max_length=50000, blank=True)
 
     created_date = models.DateTimeField(default=timezone.now)
