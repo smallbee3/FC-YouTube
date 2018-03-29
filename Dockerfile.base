@@ -1,0 +1,20 @@
+# docker build -t eb-docker:production -f Dockerfile .
+
+FROM        python:3.6.4-slim
+MAINTAINER  smallbee3@gmail.com
+
+# 가끔 pip install할 떼 ascii code error날 때
+# 이 부분을 넣어주곤 함.
+ENV         LANG    C.UTF-8
+
+# apt-get으로 nginx, supervisor설치
+RUN         apt-get -y update
+RUN         apt-get -y dist-upgrade
+RUN         apt-get -y install build-essential nginx supervisor
+
+# requirements만 복사
+COPY        .requirements /srv/.requirements
+
+# pip install
+WORKDIR     /srv
+RUN         pip install -r /srv/.requirements/production.txt
